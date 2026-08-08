@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diamond Finish Mobile Auto Detailing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --df-black: #0a0a0a;
+      --df-charcoal: #111111;
+      --df-silver: #c0c0c0;
+      --df-chrome: #e8e8e8;
+      --df-gold: #d4af37;
+      --df-accent: #ff3333;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--df-black);
+      color: var(--df-chrome);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .df-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(192,192,192,0.1);
+      padding: 0.6rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .df-nav-logo {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .df-nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .df-nav-links a {
+      color: var(--df-silver);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .df-nav-links a:hover { color: var(--df-chrome); }
+
+    /* Hero */
+    .df-hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      background: url('hero.jpg') center center / cover no-repeat;
+    }
+
+    .df-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.65);
+      z-index: 0;
+    }
+
+    .df-hero-logo {
+      width: clamp(180px, 30vw, 320px);
+      height: auto;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 30px rgba(192,192,192,0.25));
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero .df-subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.3rem);
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--df-silver);
+      margin-bottom: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero .df-tagline {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--df-gold);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero-slogan {
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .df-btn {
+      padding: 0.9rem 2.5rem;
+      background: transparent;
+      border: 1px solid var(--df-silver);
+      color: var(--df-chrome);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .df-btn:hover {
+      background: var(--df-silver);
+      color: var(--df-black);
+    }
+
+    .df-btn-primary {
+      background: var(--df-silver);
+      color: var(--df-black);
+      border-color: var(--df-silver);
+    }
+
+    .df-btn-primary:hover {
+      background: var(--df-chrome);
+      border-color: var(--df-chrome);
+    }
+
+    /* Sections */
+    .df-section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .df-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--df-gold);
+      margin-bottom: 1rem;
+    }
+
+    .df-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 1.5rem;
+    }
+
+    .df-section p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--df-silver);
+      font-weight: 300;
+      max-width: 700px;
+    }
+
+    /* About */
+    .df-about {
+      background: var(--df-charcoal);
+    }
+
+    /* Parallax Sections */
+    .df-parallax {
+      position: relative;
+      height: 60vh;
+      min-height: 320px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .df-parallax-img {
+      position: absolute;
+      top: -15%;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    .df-parallax-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.6), rgba(10,10,10,0.4));
+      z-index: 1;
+    }
+
+    .df-parallax-text {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    /* Vision - Original styling preserved */
+    .df-vision-anim {
+      max-width: 700px;
+      margin-top: 1.5rem;
+    }
+
+    .df-vision-line {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--df-silver);
+      font-weight: 300;
+      opacity: 0;
+      transform: translateX(0);
+      transition: none;
+      display: block;
+    }
+
+    .df-vision-line.slide-from-left {
+      transform: translateX(-120vw);
+    }
+
+    .df-vision-line.slide-from-right {
+      transform: translateX(120vw);
+    }
+
+    .df-vision-line.visible {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .df-vision-line.exit {
+      opacity: 0;
+    }
+
+    .df-vision-line.exit-left {
+      transform: translateX(-120vw);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.55, 0, 1, 0.45);
+    }
+
+    .df-vision-line.exit-right {
+      transform: translateX(120vw);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.55, 0, 1, 0.45);
+    }
+
+    /* What We Offer */
+    .df-offer {
+      background: var(--df-charcoal);
+    }
+
+    .df-offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .df-offer-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(192,192,192,0.08);
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.3s;
+    }
+
+    .df-offer-card:hover {
+      border-color: rgba(192,192,192,0.2);
+      transform: translateY(-3px);
+    }
+
+    .df-offer-card h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .df-offer-card h3::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--df-gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .df-offer-card p {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--df-silver);
+      font-weight: 300;
+    }
+
+    /* Services */
+    .df-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .df-service-card {
+      background: var(--df-charcoal);
+      border: 1px solid rgba(192,192,192,0.08);
+      padding: 2rem;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .df-service-card:hover {
+      border-color: rgba(192,192,192,0.2);
+      transform: translateY(-3px);
+    }
+
+    .df-service-card.popular {
+      border-color: var(--df-gold);
+    }
+
+    .df-popular-badge {
+      position: absolute;
+      top: -1px;
+      right: 2rem;
+      background: var(--df-gold);
+      color: var(--df-black);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+    }
+
+    .df-service-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 0.5rem;
+    }
+
+    .df-service-card .df-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--df-chrome);
+      margin-bottom: 1.5rem;
+    }
+
+    .df-service-card .df-price span {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--df-silver);
+      letter-spacing: 1px;
+    }
+
+    .df-service-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .df-service-list li {
+      font-size: 0.75rem;
+      color: var(--df-silver);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(192,192,192,0.05);
+      letter-spacing: 0.5px;
+    }
+
+    .df-time {
+      font-size: 0.65rem;
+      color: var(--df-gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Add-ons */
+    .df-addons {
+      background: var(--df-charcoal);
+    }
+
+    .df-addons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .df-addon-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(192,192,192,0.06);
+    }
+
+    .df-addon-item span:first-child {
+      font-size: 0.75rem;
+      color: var(--df-silver);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .df-addon-item span:last-child {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--df-chrome);
+    }
+
+    /* Travel */
+    .df-travel-table {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 2rem;
+      border-collapse: collapse;
+    }
+
+    .df-travel-table td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(192,192,192,0.08);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .df-travel-table td:first-child {
+      color: var(--df-silver);
+      text-transform: uppercase;
+    }
+
+    .df-travel-table td:last-child {
+      color: var(--df-chrome);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Subscriptions */
+    .df-subs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .df-sub-card {
+      background: var(--df-charcoal);
+      border: 1px solid rgba(192,192,192,0.08);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      opacity: 0.7;
+    }
+
+    .df-sub-card .df-coming-soon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-5deg);
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--df-gold);
+      color: var(--df-gold);
+      padding: 0.5rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .df-sub-card h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--df-silver);
+      margin-bottom: 0.5rem;
+    }
+
+    .df-sub-card .df-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--df-chrome);
+      margin-bottom: 1rem;
+    }
+
+    .df-sub-card ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .df-sub-card ul li {
+      font-size: 0.7rem;
+      color: var(--df-silver);
+      padding: 0.3rem 0;
+      letter-spacing: 0.5px;
+    }
+
+    /* Contact */
+    .df-contact {
+      background: var(--df-charcoal);
+      text-align: center;
+    }
+
+    .df-contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .df-contact-item {
+      font-size: 0.8rem;
+      color: var(--df-silver);
+      letter-spacing: 1px;
+    }
+
+    .df-contact-item strong {
+      display: block;
+      color: var(--df-chrome);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Footer */
+    .df-footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(192,192,192,0.08);
+      font-size: 0.65rem;
+      color: var(--df-silver);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .df-footer-logo {
+      height: 60px;
+      width: auto;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    /* Pop-up */
+    .df-popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+      padding: 1rem;
+    }
+
+    .df-popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .df-popup {
+      background: var(--df-charcoal);
+      border: 1px solid rgba(192,192,192,0.15);
+      padding: 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.4s;
+    }
+
+    .df-popup-overlay.active .df-popup {
+      transform: scale(1);
+    }
+
+    .df-popup-logo {
+      width: 70px;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .df-popup-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: none;
+      border: none;
+      color: var(--df-silver);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .df-popup h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 0.5rem;
+    }
+
+    .df-popup .df-popup-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--df-gold);
+      margin: 0.8rem 0;
+    }
+
+    .df-popup p {
+      font-size: 0.8rem;
+      color: var(--df-silver);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Back to top */
+    .df-back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(192,192,192,0.1);
+      border: 1px solid rgba(192,192,192,0.2);
+      color: var(--df-silver);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+      z-index: 99;
+    }
+
+    .df-back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .df-back-to-top:hover {
+      background: var(--df-silver);
+      color: var(--df-black);
+    }
+
+    @media (max-width: 768px) {
+      .df-nav-links { display: none; }
+      .df-contact-info { flex-direction: column; gap: 1.5rem; }
+      .df-section { padding: 3rem 1.5rem; }
+      .df-parallax { height: 50vh; min-height: 280px; }
+
+      .df-popup {
+        padding: 1.5rem;
+        max-width: 100%;
+      }
+
+      .df-popup h3 {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+      }
+
+      .df-popup .df-popup-price {
+        font-size: 1.4rem;
+      }
+
+      .df-popup p {
+        font-size: 0.75rem;
+      }
+
+      .df-popup-logo {
+        width: 55px;
+      }
+
+      .df-popup .df-btn {
+        padding: 0.75rem 2rem;
+        font-size: 0.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="df-nav">
+    <img src="logo.png" alt="Diamond Finish Logo" class="df-nav-logo">
+    <ul class="df-nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#addons">Add-Ons</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="#subscriptions">Memberships</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="df-hero">
+    <img src="logo.png" alt="Diamond Finish Logo" class="df-hero-logo">
+    <div class="df-hero-slogan">Restore. Protect. Perfect.</div>
+    <div class="df-subtitle">Mobile Auto Detailing</div>
+    <div class="df-tagline">Premium Care &middot; Perfect in Every Detail</div>
+    <a href="#services" class="df-btn df-btn-primary">View Packages</a>
+  </section>
+
+  <!-- About -->
+  <section class="df-section df-about" id="about">
+    <div class="df-section-title">About Us</div>
+    <h2>Precision Meets Passion</h2>
+    <p>Diamond Finish Auto Detailing is a premium mobile automotive detailing company based in South Africa. We enhance and preserve your vehicle's appearance, value, and longevity through advanced techniques and premium products — delivering showroom-quality results every time.</p>
+  </section>
+
+  <!-- Parallax: Porsche -->
+  <section class="df-parallax" id="parallax-porsche">
+    <img src="Porche.jpg" alt="Premium Porsche Detailing" class="df-parallax-img" id="porsche-img">
+    <div class="df-parallax-overlay"></div>
+    <div class="df-parallax-text">Where Passion Meets Perfection</div>
+  </section>
+
+  <!-- Vision -->
+  <section class="df-section" id="vision">
+    <div class="df-section-title">Our Vision</div>
+    <h2>South Africa's Leading Premium Detailer</h2>
+    <div class="df-vision-anim">
+      <span class="df-vision-line slide-from-left" data-direction="left">We are setting the benchmark</span>
+      <span class="df-vision-line slide-from-right" data-direction="right">for quality workmanship,</span>
+      <span class="df-vision-line slide-from-left" data-direction="left">customer experience,</span>
+      <span class="df-vision-line slide-from-right" data-direction="right">and vehicle protection.</span>
+      <span class="df-vision-line slide-from-left" data-direction="left">Our mission is to restore,</span>
+      <span class="df-vision-line slide-from-right" data-direction="right">enhance, and protect every vehicle</span>
+      <span class="df-vision-line slide-from-left" data-direction="left">entrusted to us using world-class techniques and exceptional service.</span>
+    </div>
+  </section>
+
+  <!-- Parallax: Clean Tyre -->
+  <section class="df-parallax" id="parallax-tyre">
+    <img src="CleanTyre.jpg" alt="Precision Tyre Cleaning" class="df-parallax-img" id="tyre-img">
+    <div class="df-parallax-overlay"></div>
+    <div class="df-parallax-text">Every Detail Matters</div>
+  </section>
+
+  <!-- What We Offer -->
+  <section class="df-section df-offer" id="offer">
+    <div class="df-section-title">Excellence</div>
+    <h2>What We Offer</h2>
+    <p>Professional auto detailing goes far beyond a standard wash. It is the meticulous process of cleaning, restoring, and protecting every part of your vehicle — inside and out.</p>
+    <div class="df-offer-grid">
+      <div class="df-offer-card">
+        <h3>Deep Interior Cleaning</h3>
+        <p>From leather conditioning to fabric shampoo and steam sanitisation, we restore your cabin to a fresh, hygienic state.</p>
+      </div>
+      <div class="df-offer-card">
+        <h3>Paint Decontamination</h3>
+        <p>Iron fallout removal, clay bar treatment, and safe washing techniques that preserve your clear coat and prepare the surface for protection.</p>
+      </div>
+      <div class="df-offer-card">
+        <h3>Paint Enhancement</h3>
+        <p>Single and multi-stage machine polishing to remove swirl marks, minor scratches, and oxidation for a mirror-like finish.</p>
+      </div>
+      <div class="df-offer-card">
+        <h3>Ceramic Coatings</h3>
+        <p>Long-lasting protection for paint, wheels, glass, and exterior plastics — keeping your vehicle cleaner for longer with incredible gloss.</p>
+      </div>
+      <div class="df-offer-card">
+        <h3>Headlight Restoration</h3>
+        <p>Remove yellowing and oxidation to improve visibility and restore that factory-fresh clarity to your headlights.</p>
+      </div>
+      <div class="df-offer-card">
+        <h3>Engine Bay Detailing</h3>
+        <p>A clean engine bay not only looks great but also helps identify leaks early and maintains component longevity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax: Car Wash -->
+  <section class="df-parallax" id="parallax-carwash">
+    <img src="carwash.jpg" alt="Premium Car Wash" class="df-parallax-img" id="carwash-img">
+    <div class="df-parallax-overlay"></div>
+    <div class="df-parallax-text">Wash With Precision</div>
+  </section>
+
+
+  <!-- Services -->
+  <section class="df-section" id="services">
+    <div class="df-section-title">Prestige Collection</div>
+    <h2>Our Packages</h2>
+
+    <div class="df-services-grid">
+      <!-- Essential -->
+      <div class="df-service-card">
+        <h3>Essential</h3>
+        <div class="df-price">From R400 <span>Express Detail</span></div>
+        <div class="df-time">45 &ndash; 60 Minutes</div>
+        <ul class="df-service-list">
+          <li>Snow foam pre-wash</li>
+          <li>Two-bucket hand wash</li>
+          <li>Wheel faces cleaned</li>
+          <li>Tyres dressed</li>
+          <li>Exterior windows cleaned</li>
+          <li>Door jambs wiped</li>
+          <li>Quick interior vacuum</li>
+          <li>Dashboard dust removal</li>
+          <li>Air freshener</li>
+        </ul>
+        <a href="#contact" class="df-btn">Book Now</a>
+      </div>
+
+      <!-- Select -->
+      <div class="df-service-card">
+        <h3>Select</h3>
+        <div class="df-price">From R750 <span>Maintenance Detail</span></div>
+        <div class="df-time">1.5 &ndash; 2 Hours</div>
+        <ul class="df-service-list">
+          <li>Deep interior vacuum</li>
+          <li>Dashboard &amp; console dressing</li>
+          <li>Door panels cleaned</li>
+          <li>Boot vacuum</li>
+          <li>Interior windows cleaned</li>
+          <li>Plastic trim restoration</li>
+          <li>Spray wax protection</li>
+          <li>Wheel barrels cleaned</li>
+          <li>Exhaust tips polished</li>
+        </ul>
+        <a href="#contact" class="df-btn">Book Now</a>
+      </div>
+
+      <!-- Signature -->
+      <div class="df-service-card">
+        <h3>Signature</h3>
+        <div class="df-price">From R1,200 <span>Full Detail</span></div>
+        <div class="df-time">3 &ndash; 4 Hours</div>
+        <ul class="df-service-list">
+          <li>Iron fallout remover</li>
+          <li>Clay bar treatment</li>
+          <li>Paint decontamination</li>
+          <li>Premium sealant (6 months)</li>
+          <li>Leather cleaning &amp; conditioning</li>
+          <li>Fabric shampoo (light stains)</li>
+          <li>Steam sanitisation</li>
+          <li>Exterior trim restoration</li>
+        </ul>
+        <a href="#contact" class="df-btn">Book Now</a>
+      </div>
+
+      <!-- Prestige - Popular -->
+      <div class="df-service-card popular">
+        <div class="df-popular-badge">Most Popular</div>
+        <h3>Prestige</h3>
+        <div class="df-price">From R1,600 <span>Paint Enhancement</span></div>
+        <div class="df-time">5 &ndash; 7 Hours</div>
+        <ul class="df-service-list">
+          <li>Paint inspection</li>
+          <li>Single-stage machine polish</li>
+          <li>Light swirl mark removal</li>
+          <li>Minor scratch reduction</li>
+          <li>High-gloss finishing polish</li>
+          <li>Premium paint sealant</li>
+          <li>Ceramic spray topper</li>
+          <li>Headlight restoration</li>
+          <li>Chrome polishing</li>
+        </ul>
+        <a href="#contact" class="df-btn df-btn-primary">Book Now</a>
+      </div>
+
+      <!-- Elite -->
+      <div class="df-service-card">
+        <h3>Elite</h3>
+        <div class="df-price">From R2,800 <span>Paint Correction</span></div>
+        <div class="df-time">1 &ndash; 2 Days</div>
+        <ul class="df-service-list">
+          <li>Multi-stage paint correction</li>
+          <li>Heavy swirl mark removal</li>
+          <li>Oxidation removal</li>
+          <li>Deep scratch reduction</li>
+          <li>Professional panel wipe</li>
+          <li>5-year ceramic coating</li>
+          <li>Wheel ceramic coating</li>
+          <li>Exterior plastics coated</li>
+          <li>Glass coating</li>
+          <li>Leather deep treatment</li>
+          <li>Interior steam sanitisation</li>
+          <li>Complimentary maintenance wash (30 days)</li>
+        </ul>
+        <a href="#contact" class="df-btn">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax: Interior Clean -->
+  <section class="df-parallax" id="parallax-interior">
+    <img src="interiorclean.jpg" alt="Interior Detailing" class="df-parallax-img" id="interior-img">
+    <div class="df-parallax-overlay"></div>
+    <div class="df-parallax-text">Immaculate Interiors</div>
+  </section>
+
+
+  <!-- Add-ons -->
+  <section class="df-section df-addons" id="addons">
+    <div class="df-section-title">Extras</div>
+    <h2>Add-On Services</h2>
+    <div class="df-addons-grid">
+      <div class="df-addon-item"><span>Engine Bay Detail</span><span>R450</span></div>
+      <div class="df-addon-item"><span>Headlight Restoration</span><span>R450</span></div>
+      <div class="df-addon-item"><span>Leather Treatment</span><span>R350</span></div>
+      <div class="df-addon-item"><span>Fabric Seat Shampoo</span><span>R450</span></div>
+      <div class="df-addon-item"><span>Pet Hair Removal</span><span>From R250</span></div>
+      <div class="df-addon-item"><span>Child Seat Cleaning</span><span>R200</span></div>
+      <div class="df-addon-item"><span>Clay Bar Treatment</span><span>R500</span></div>
+      <div class="df-addon-item"><span>Single Stage Polish</span><span>From R1,200</span></div>
+      <div class="df-addon-item"><span>Two Stage Correction</span><span>From R2,800</span></div>
+      <div class="df-addon-item"><span>Ceramic Maintenance</span><span>R650</span></div>
+      <div class="df-addon-item"><span>Glass Coating</span><span>R500</span></div>
+      <div class="df-addon-item"><span>Wheel Ceramic Coating</span><span>R800</span></div>
+      <div class="df-addon-item"><span>Odour Removal</span><span>R300</span></div>
+      <div class="df-addon-item"><span>Tar Removal</span><span>R250</span></div>
+      <div class="df-addon-item"><span>Scratch Assessment</span><span>Free</span></div>
+    </div>
+  </section>
+
+  <!-- Parallax: Paint Car -->
+  <section class="df-parallax" id="parallax-paintcar">
+    <img src="paintcar.jpg" alt="Professional Paint Work" class="df-parallax-img" id="paintcar-img">
+    <div class="df-parallax-overlay"></div>
+    <div class="df-parallax-text">Flawless Finish, Every Time</div>
+  </section>
+
+
+  <!-- Travel -->
+  <section class="df-section" id="travel">
+    <div class="df-section-title">Coverage</div>
+    <h2>Travel Charges</h2>
+    <p style="margin-bottom: 1.5rem;">Based on distance from Randburg. All prices are added to your selected package.</p>
+    <table class="df-travel-table">
+      <tr><td>0 &ndash; 15 km</td><td>Free</td></tr>
+      <tr><td>16 &ndash; 25 km</td><td>R80</td></tr>
+      <tr><td>26 &ndash; 35 km</td><td>R150</td></tr>
+      <tr><td>36 &ndash; 50 km</td><td>R250</td></tr>
+      <tr><td>51 &ndash; 70 km</td><td>R350</td></tr>
+      <tr><td>71 km+</td><td>Custom Quotation</td></tr>
+    </table>
+  </section>
+
+  <!-- Subscriptions -->
+  <section class="df-section df-addons" id="subscriptions">
+    <div class="df-section-title">Membership</div>
+    <h2>Subscription Programme</h2>
+    <div class="df-subs-grid">
+      <div class="df-sub-card">
+        <div class="df-coming-soon">Coming Soon</div>
+        <h4>Diamond Essential Care</h4>
+        <div class="df-price">R499<span style="font-size:0.8rem;font-weight:400">/month</span></div>
+        <ul>
+          <li>Priority booking</li>
+          <li>10% off upgrades</li>
+        </ul>
+      </div>
+      <div class="df-sub-card">
+        <div class="df-coming-soon">Coming Soon</div>
+        <h4>Diamond Select Care</h4>
+        <div class="df-price">R799<span style="font-size:0.8rem;font-weight:400">/month</span></div>
+        <ul>
+          <li>Free engine bay detail every second visit</li>
+        </ul>
+      </div>
+      <div class="df-sub-card">
+        <div class="df-coming-soon">Coming Soon</div>
+        <h4>Diamond Prestige Care</h4>
+        <div class="df-price">R1,499<span style="font-size:0.8rem;font-weight:400">/month</span></div>
+        <ul>
+          <li>One prestige detail every month</li>
+          <li>Ceramic coating inspection every 6 months</li>
+          <li>Complimentary interior sanitisation</li>
+          <li>Free headlight polish annually</li>
+          <li>20% discount on add-ons</li>
+        </ul>
+      </div>
+      <div class="df-sub-card">
+        <div class="df-coming-soon">Coming Soon</div>
+        <h4>Diamond Elite Membership</h4>
+        <div class="df-price">R2,499<span style="font-size:0.8rem;font-weight:400">/month</span></div>
+        <ul>
+          <li>Designed for luxury vehicles</li>
+          <li>Two maintenance details monthly</li>
+          <li>Annual paint enhancement polish</li>
+          <li>Ceramic coating health check</li>
+          <li>VIP scheduling</li>
+          <li>Emergency detailing appointments</li>
+          <li>Complimentary call-out</li>
+          <li>25% off premium services</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="df-section df-contact" id="contact">
+    <div class="df-section-title">Get in Touch</div>
+    <h2>Book Your Detail</h2>
+    <div class="df-contact-info">
+      <div class="df-contact-item">
+        <strong>Phone</strong>
+        (+27) 93 342 06
+      </div>
+      <div class="df-contact-item">
+        <strong>Email</strong>
+        diamondfinish@gmail.com
+      </div>
+      <div class="df-contact-item">
+        <strong>Address</strong>
+        8 Ryder Road, Bordeaux, Randburg 2194
+      </div>
+    </div>
+    <br><br>
+    <a href="mailto:diamondfinish@gmail.com" class="df-btn df-btn-primary">Request Booking</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="df-footer">
+    <img src="logo.png" alt="Diamond Finish Logo" class="df-footer-logo"><br>
+    Diamond Finish Mobile Auto Detailing &middot; Premium Care &middot; Perfect in Every Detail
+  </footer>
+
+  <!-- Pop-up -->
+  <div class="df-popup-overlay" id="dfPopup">
+    <div class="df-popup">
+      <button class="df-popup-close" onclick="closePopup()">&times;</button>
+      <img src="logo.png" alt="Diamond Finish Logo" class="df-popup-logo">
+      <h3>Most Popular Deal</h3>
+      <div class="df-popup-price">Prestige Package</div>
+      <p>Our Prestige Paint Enhancement package is the customer favourite. Single-stage machine polish, swirl removal, ceramic spray topper, and headlight restoration &mdash; all from <strong>R1,600</strong>.</p>
+      <a href="#contact" class="df-btn df-btn-primary" onclick="closePopup()">Claim This Deal</a>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="df-back-to-top" id="dfBackToTop" onclick="scrollToTop()">&#8593;</button>
+
+  <script>
+    // Popup after 6 seconds
+    setTimeout(function() {
+      document.getElementById('dfPopup').classList.add('active');
+    }, 6000);
+
+    function closePopup() {
+      document.getElementById('dfPopup').classList.remove('active');
+    }
+
+    // Close popup on overlay click
+    document.getElementById('dfPopup').addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+
+    // Back to top
+    const backToTop = document.getElementById('dfBackToTop');
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Parallax effect (works on all screen sizes)
+    function initParallax() {
+      const porscheImg = document.getElementById('porsche-img');
+      const tyreImg = document.getElementById('tyre-img');
+      const carwashImg = document.getElementById('carwash-img');
+      const interiorImg = document.getElementById('interior-img');
+      const paintcarImg = document.getElementById('paintcar-img');
+
+      function updateParallax() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const winHeight = window.innerHeight;
+
+        [porscheImg, tyreImg, carwashImg, interiorImg, paintcarImg].forEach(img => {
+          if (!img) return;
+          const section = img.parentElement;
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top + scrollY;
+          const sectionHeight = rect.height;
+
+          if (scrollY + winHeight > sectionTop - 200 && scrollY < sectionTop + sectionHeight + 200) {
+            const relativeScroll = scrollY - sectionTop + winHeight;
+            const speed = 0.15;
+            const offset = (relativeScroll - winHeight) * speed;
+            img.style.transform = 'translateY(' + offset + 'px)';
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      window.addEventListener('resize', updateParallax, { passive: true });
+      updateParallax();
+    }
+
+    initParallax();
+
+    // Vision section animation
+    function initVisionAnimation() {
+      const visionSection = document.getElementById('vision');
+      const lines = visionSection.querySelectorAll('.df-vision-line');
+      const staggerDelay = 500; // 0.5 seconds between each line
+      const visibleDuration = 6000; // 6 seconds visible
+      let isAnimating = false;
+      let timeouts = [];
+
+      function clearAllTimeouts() {
+        timeouts.forEach(t => clearTimeout(t));
+        timeouts = [];
+      }
+
+      function animateIn() {
+        if (isAnimating) return;
+        isAnimating = true;
+        clearAllTimeouts();
+
+        lines.forEach(line => {
+          line.classList.remove('visible', 'exit', 'exit-left', 'exit-right');
+          void line.offsetWidth;
+        });
+
+        lines.forEach((line, index) => {
+          const t1 = setTimeout(() => {
+            line.classList.add('visible');
+          }, index * staggerDelay);
+          timeouts.push(t1);
+        });
+
+        const totalInTime = (lines.length - 1) * staggerDelay;
+        const t2 = setTimeout(() => {
+          lines.forEach((line, index) => {
+            const t3 = setTimeout(() => {
+              line.classList.remove('visible');
+              line.classList.add('exit');
+              if (line.dataset.direction === 'left') {
+                line.classList.add('exit-left');
+              } else {
+                line.classList.add('exit-right');
+              }
+            }, index * staggerDelay);
+            timeouts.push(t3);
+          });
+
+          const totalExitTime = (lines.length - 1) * staggerDelay + 800;
+          const t4 = setTimeout(() => {
+            isAnimating = false;
+          }, totalExitTime);
+          timeouts.push(t4);
+        }, totalInTime + visibleDuration);
+        timeouts.push(t2);
+      }
+
+      function resetLines() {
+        clearAllTimeouts();
+        isAnimating = false;
+        lines.forEach(line => {
+          line.classList.remove('visible', 'exit', 'exit-left', 'exit-right');
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!isAnimating) {
+              animateIn();
+            }
+          } else {
+            resetLines();
+          }
+        });
+      }, {
+        threshold: 0.4
+      });
+
+      observer.observe(visionSection);
+    }
+
+    initVisionAnimation();
+  </script>
+</body>
+</html>
