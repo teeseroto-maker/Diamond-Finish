@@ -1,3 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diamond Finish Mobile Auto Detailing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --df-black: #0a0a0a;
+      --df-charcoal: #111111;
+      --df-silver: #c0c0c0;
+      --df-chrome: #e8e8e8;
+      --df-gold: #d4af37;
+      --df-accent: #ff3333;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--df-black);
+      color: var(--df-chrome);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .df-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(192,192,192,0.1);
+      padding: 0.6rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .df-nav-logo {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .df-nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .df-nav-links a {
+      color: var(--df-silver);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .df-nav-links a:hover { color: var(--df-chrome); }
+
+    /* Hero */
+    .df-hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      background: url('hero.jpg') center center / cover no-repeat;
+    }
+
+    .df-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.65);
+      z-index: 0;
+    }
+
+    .df-hero-logo {
+      width: clamp(180px, 30vw, 320px);
+      height: auto;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 30px rgba(192,192,192,0.25));
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero .df-subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.3rem);
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--df-silver);
+      margin-bottom: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero .df-tagline {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--df-gold);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-hero-slogan {
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .df-btn {
+      padding: 0.9rem 2.5rem;
+      background: transparent;
+      border: 1px solid var(--df-silver);
+      color: var(--df-chrome);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .df-btn:hover {
+      background: var(--df-silver);
+      color: var(--df-black);
+    }
+
+    .df-btn-primary {
+      background: var(--df-silver);
+      color: var(--df-black);
+      border-color: var(--df-silver);
+    }
+
+    .df-btn-primary:hover {
+      background: var(--df-chrome);
+      border-color: var(--df-chrome);
+    }
+
+    /* Sections */
+    .df-section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .df-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--df-gold);
+      margin-bottom: 1rem;
+    }
+
+    .df-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      margin-bottom: 1.5rem;
+    }
+
+    .df-section p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--df-silver);
+      font-weight: 300;
+      max-width: 700px;
+    }
+
+    /* About */
+    .df-about {
+      background: var(--df-charcoal);
+    }
+
+    /* Parallax Sections */
+    .df-parallax {
+      position: relative;
+      height: 60vh;
+      min-height: 320px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .df-parallax-img {
+      position: absolute;
+      top: -15%;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    .df-parallax-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.6), rgba(10,10,10,0.4));
+      z-index: 1;
+    }
+
+    .df-parallax-text {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--df-chrome);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    /* Vision - Original styling preserved */
+    .df-vision-anim {
+      max-width: 700px;
+      margin-top: 1.5rem;
+    }
+
+    .df-vision-line {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--df-silver);
+      font-weight: 300;
+      opacity: 0;
+      transform: translateX(0);
+      transition: none;
+      display: block;
+    }
+
+    .df-vision-line.slide-from-left {
+      transform: translateX(-120vw);
+    }
+
+    .df-vision-line.slide-from-right {
+      transform: translateX(120vw);
+    }
+
+    .df-vision-line.visible {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .df-vision-line.exit {
+      opacity: 0;
+    }
+
+    .df-vision-line.exit-left {
+      transform: translateX(-120vw);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.55, 0, 1, 0.45);
+    }
+
+    .df-vision-line.exit-right {
+      transform: translateX(120vw);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.55, 0, 1, 0.45);
+    }
+
+    /* What We Offer */
+    .df-offer {
+      background: var(--df-charcoal);
+    }
+
+    .df-offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .df-offer-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(192,192,192,0.08);
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.3s;
     }
 
     .df-offer-card:hover {
