@@ -51,6 +51,7 @@
     }
 
     .df-nav-links a {
+      position: relative;
       color: var(--df-silver);
       text-decoration: none;
       font-size: 0.75rem;
@@ -60,7 +61,19 @@
       transition: color 0.3s;
     }
 
+    .df-nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 1px;
+      background: var(--df-gold);
+      transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
     .df-nav-links a:hover { color: var(--df-chrome); }
+    .df-nav-links a:hover::after { width: 100%; }
 
     /* Hero */
     .df-hero {
@@ -89,6 +102,19 @@
       filter: drop-shadow(0 0 30px rgba(192,192,192,0.25));
       position: relative;
       z-index: 1;
+      opacity: 0;
+      animation: dfFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+                 dfFloat 6s ease-in-out 1.2s infinite;
+    }
+
+    @keyframes dfFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dfFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .df-hero h1 {
@@ -110,6 +136,8 @@
       margin-bottom: 0.3rem;
       position: relative;
       z-index: 1;
+      opacity: 0;
+      animation: dfFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
     }
 
     .df-hero .df-tagline {
@@ -120,6 +148,13 @@
       margin-bottom: 2.5rem;
       position: relative;
       z-index: 1;
+      opacity: 0;
+      animation: dfFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+    }
+
+    .df-hero .df-btn {
+      opacity: 0;
+      animation: dfFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
     }
 
     .df-hero-slogan {
@@ -132,6 +167,8 @@
       position: relative;
       z-index: 1;
       text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      opacity: 0;
+      animation: dfFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
     }
 
     .df-btn {
@@ -292,6 +329,35 @@
       transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.55, 0, 1, 0.45);
     }
 
+    /* Generic scroll-reveal, reused for headings, parallax captions, table rows, cards */
+    .df-reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .df-reveal.df-reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .df-parallax-text.df-reveal {
+      transform: translateY(15px) scale(0.9);
+    }
+
+    .df-parallax-text.df-reveal.df-reveal-visible {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Subscription cards keep their dimmed "Coming Soon" look once revealed, instead of full opacity */
+    .df-sub-card.df-reveal {
+      opacity: 0;
+    }
+
+    .df-sub-card.df-reveal.df-reveal-visible {
+      opacity: 0.7;
+    }
+
     /* What We Offer */
     .df-offer {
       background: var(--df-charcoal);
@@ -309,7 +375,14 @@
       border: 1px solid rgba(192,192,192,0.08);
       padding: 2rem;
       text-align: left;
-      transition: all 0.3s;
+      filter: blur(6px);
+      opacity: 0.45;
+      transition: filter 0.6s ease, opacity 0.6s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .df-offer-card.df-offer-visible {
+      filter: blur(0);
+      opacity: 1;
     }
 
     .df-offer-card:hover {
@@ -359,12 +432,41 @@
       border: 1px solid rgba(192,192,192,0.08);
       padding: 2rem;
       position: relative;
-      transition: all 0.3s;
+      opacity: 0;
+      transform: translateX(-90px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s ease;
+    }
+
+    .df-service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--df-black);
+      transform-origin: right center;
+      transform: scaleX(0);
+      transition: transform 0.6s cubic-bezier(0.55, 0, 1, 0.45);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .df-service-card.df-card-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .df-service-card.df-card-exit::after {
+      transform: scaleX(1);
     }
 
     .df-service-card:hover {
       border-color: rgba(192,192,192,0.2);
       transform: translateY(-3px);
+    }
+
+    .df-service-card.df-card-visible:hover {
+      transform: translateX(0) translateY(-3px);
     }
 
     .df-service-card.popular {
@@ -711,6 +813,66 @@
       color: var(--df-black);
     }
 
+    /* WhatsApp floating button — shiny metallic silver, matching the logo's chrome finish */
+    .df-whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--df-chrome) 0%, var(--df-silver) 45%, #7d7d7d 60%, var(--df-chrome) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.5), inset 0 0 8px rgba(255,255,255,0.3);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+
+    .df-whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--df-black);
+      position: relative;
+      z-index: 1;
+    }
+
+    .df-whatsapp-float::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(192,192,192,0.6);
+      animation: dfWhatsappRing 2.5s ease-out infinite;
+    }
+
+    .df-whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 26px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.4), 0 0 0 1px rgba(212,175,55,0.5);
+    }
+
+    @keyframes dfWhatsappRing {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .df-whatsapp-float {
+        width: 48px;
+        height: 48px;
+        bottom: 1.25rem;
+        left: 1.25rem;
+      }
+
+      .df-whatsapp-float svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
     @media (max-width: 768px) {
       .df-nav-links { display: none; }
       .df-contact-info { flex-direction: column; gap: 1.5rem; }
@@ -773,7 +935,14 @@
   <section class="df-section df-about" id="about">
     <div class="df-section-title">About Us</div>
     <h2>Precision Meets Passion</h2>
-    <p>Diamond Finish Auto Detailing is a premium mobile automotive detailing company based in South Africa. We enhance and preserve your vehicle's appearance, value, and longevity through advanced techniques and premium products — delivering showroom-quality results every time.</p>
+    <div class="df-vision-anim">
+      <span class="df-vision-line slide-from-left" data-direction="left">Diamond Finish Auto Detailing is a premium mobile</span>
+      <span class="df-vision-line slide-from-right" data-direction="right">automotive detailing company based in South Africa.</span>
+      <span class="df-vision-line slide-from-left" data-direction="left">We enhance and preserve your vehicle's appearance,</span>
+      <span class="df-vision-line slide-from-right" data-direction="right">value, and longevity through advanced techniques</span>
+      <span class="df-vision-line slide-from-left" data-direction="left">and premium products — delivering showroom-quality</span>
+      <span class="df-vision-line slide-from-right" data-direction="right">results every time.</span>
+    </div>
   </section>
 
   <!-- Parallax: Porsche -->
@@ -1098,6 +1267,11 @@
     </div>
   </div>
 
+  <!-- WhatsApp -->
+  <a href="https://wa.me/27670929982" target="_blank" rel="noopener" class="df-whatsapp-float" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 1.67c2.2 0 4.27.86 5.82 2.42a8.225 8.225 0 0 1 2.42 5.82c0 4.55-3.7 8.25-8.25 8.25-1.53 0-3.02-.42-4.32-1.22l-.31-.18-3.11.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.26-4.36c.01-4.55 3.71-8.25 8.26-8.25zm-3.11 4.19c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.62 2.62 4.03 3.55 1.99.77 2.39.61 2.82.57.43-.04 1.39-.57 1.58-1.12.19-.55.19-1.02.13-1.12-.06-.1-.21-.16-.44-.28-.23-.12-1.39-.69-1.6-.76-.21-.08-.37-.12-.53.12-.16.24-.61.76-.75.92-.14.16-.28.18-.51.06-.23-.12-.99-.37-1.89-1.18-.7-.63-1.17-1.4-1.31-1.64-.14-.24-.02-.36.1-.48.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.32-.74-1.8-.19-.46-.39-.4-.53-.4z"/></svg>
+  </a>
+
   <!-- Back to Top -->
   <button class="df-back-to-top" id="dfBackToTop" onclick="scrollToTop()">&#8593;</button>
 
@@ -1177,12 +1351,10 @@
 
     initParallax();
 
-    // Vision section animation
-    function initVisionAnimation() {
-      const visionSection = document.getElementById('vision');
-      const lines = visionSection.querySelectorAll('.df-vision-line');
-      const staggerDelay = 500; // 0.5 seconds between each line
-      const visibleDuration = 6000; // 6 seconds visible
+    // Reusable line-cycle animation (stagger in, hold, stagger out, replays every time
+    // the section re-enters view — used by Vision, About Us, and Extras)
+    function setupLineCycle(sectionEl, lines, staggerDelay, visibleDuration, threshold) {
+      if (!sectionEl || !lines.length) return;
       let isAnimating = false;
       let timeouts = [];
 
@@ -1251,13 +1423,90 @@
           }
         });
       }, {
-        threshold: 0.4
+        threshold: threshold || 0.4
       });
 
-      observer.observe(visionSection);
+      observer.observe(sectionEl);
     }
 
-    initVisionAnimation();
+    // Our Vision — original line-cycle animation
+    const visionSection = document.getElementById('vision');
+    setupLineCycle(visionSection, visionSection.querySelectorAll('.df-vision-line'), 500, 6000, 0.4);
+
+    // About Us — same line-cycle animation applied to the About copy
+    const aboutSection = document.getElementById('about');
+    setupLineCycle(aboutSection, aboutSection.querySelectorAll('.df-vision-line'), 500, 6000, 0.4);
+
+    // Extras (Add-On Services) — same line-cycle animation applied to each add-on row,
+    // alternating entry direction left/right down the list
+    const addonsSection = document.getElementById('addons');
+    const addonItems = addonsSection.querySelectorAll('.df-addon-item');
+    addonItems.forEach((item, index) => {
+      const direction = index % 2 === 0 ? 'left' : 'right';
+      item.classList.add('df-vision-line', direction === 'left' ? 'slide-from-left' : 'slide-from-right');
+      item.dataset.direction = direction;
+    });
+    setupLineCycle(addonsSection, addonItems, 90, 14000, 0.1);
+
+    // Package cards: slide in from the left as they enter view, fade to black
+    // (right to left) as they leave view — replays every time, both scroll directions.
+    function initPackageCardAnimations() {
+      const cards = document.querySelectorAll('.df-service-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const card = entry.target;
+          if (entry.isIntersecting) {
+            card.classList.remove('df-card-exit');
+            card.classList.add('df-card-visible');
+          } else if (card.classList.contains('df-card-visible')) {
+            card.classList.remove('df-card-visible');
+            card.classList.add('df-card-exit');
+            setTimeout(() => card.classList.remove('df-card-exit'), 700);
+          }
+        });
+      }, { threshold: 0.2 });
+      cards.forEach(card => observer.observe(card));
+    }
+    initPackageCardAnimations();
+
+    // What We Offer cards: blurred by default, sharpen into focus while in view,
+    // blur again once out of view — works scrolling in both directions.
+    function initOfferBlurAnimations() {
+      const cards = document.querySelectorAll('.df-offer-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('df-offer-visible', entry.isIntersecting);
+        });
+      }, { threshold: 0.35 });
+      cards.forEach(card => observer.observe(card));
+    }
+    initOfferBlurAnimations();
+
+    // Generic fade-up reveal for headings, parallax captions, table rows,
+    // subscription cards, and contact details — keeps the rest of the site feeling alive.
+    function initRevealAnimations() {
+      const selector = [
+        '#services .df-section-title', '#services h2',
+        '#offer .df-section-title', '#offer h2', '#offer > p',
+        '#addons h2',
+        '#travel .df-section-title', '#travel h2', '#travel p', '.df-travel-table tr',
+        '#subscriptions .df-section-title', '#subscriptions h2', '.df-sub-card',
+        '#contact .df-section-title', '#contact h2', '.df-contact-item', '#contact .df-btn',
+        '.df-parallax-text', '.df-footer-logo'
+      ].join(', ');
+
+      const targets = document.querySelectorAll(selector);
+      targets.forEach(el => el.classList.add('df-reveal'));
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('df-reveal-visible', entry.isIntersecting);
+        });
+      }, { threshold: 0.2 });
+
+      targets.forEach(el => observer.observe(el));
+    }
+    initRevealAnimations();
   </script>
 </body>
 </html>
